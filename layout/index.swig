@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block content %}
-  <section id="posts" class="posts-expand">
+ <section id="posts" class="posts-expand">
     {% for post in page.posts %}
-      {% if post.visible !== 'hide' %}
-       {{ post_template.render(post, true) }}
-      {% endif %}
+        {% for tag in post.tags %}
+            {% if tag.name=='main' %} 
+                {{ post_template.render(post, true) }}
+            {% endif %} 
+        {% endfor %}
     {% endfor %}
   </section>
-
-  {% include '_partials/pagination.swig' %}
 {% endblock %}
 
 {% block sidebar %}
